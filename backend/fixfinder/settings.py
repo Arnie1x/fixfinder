@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
 
     # Django Rest Framework
 
@@ -62,6 +63,8 @@ INSTALLED_APPS = [
     # 'django_use_email_as_username.apps.DjangoUseEmailAsUsernameConfig',
     # 'custom_user.apps.CustomUserConfig',
 
+    # Project Apps
+    'core.apps.CoreConfig'
 
 ]
 

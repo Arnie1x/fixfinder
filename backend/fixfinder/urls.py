@@ -30,4 +30,6 @@ urlpatterns = [
     re_path(r'^account-confirm-email/(?P<key>[-:\w]+)/$', ConfirmEmailView.as_view(), name='account_confirm_email'),
     path('auth/password-reset/', PasswordResetView.as_view()),
     path('auth/password-reset-confirm/<uidb64>/<token>/', PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
+
+    path('api/', include('core.urls'))
 ]
