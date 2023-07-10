@@ -1,4 +1,5 @@
 import 'package:beamer/beamer.dart';
+import 'package:fixfinder/helpers/layout/site_layout.dart';
 import 'package:fixfinder/pages/auth/auth.dart';
 import 'package:fixfinder/pages/auth/login/login.dart';
 import 'package:fixfinder/pages/auth/register/register.dart';
@@ -32,16 +33,17 @@ class Routes {
   ];
 
   static BeamerDelegate routerDelegate = BeamerDelegate(
-      transitionDelegate: const NoAnimationTransitionDelegate(),
-      locationBuilder: RoutesLocationBuilder(routes: {
-        '/auth': (context, state, data) => const BeamPage(
-            key: ValueKey('auth'),
-            title: 'Authentication: FixFinder',
-            child: AuthPage()),
-        '*': (context, state, data) =>
-            const BeamPage(key: ValueKey('main'), child: Placeholder()),
-      }),
-      guards: guards);
+    transitionDelegate: const NoAnimationTransitionDelegate(),
+    locationBuilder: RoutesLocationBuilder(routes: {
+      '/auth': (context, state, data) => const BeamPage(
+          key: ValueKey('auth'),
+          title: 'Authentication: FixFinder',
+          child: AuthPage()),
+      '*': (context, state, data) =>
+          const BeamPage(key: ValueKey('main'), child: SiteLayout()),
+    }),
+    // guards: guards
+  );
 
   static Map<Pattern, dynamic Function(BuildContext, BeamState, Object?)>
       authBeamerRoutes = {
@@ -59,6 +61,11 @@ class Routes {
 
   static Map<Pattern, dynamic Function(BuildContext, BeamState, Object?)>
       beamerRoutes = {
+    homeRoute: (context, state, data) => const BeamPage(
+        key: ValueKey('home'), title: 'Home: FixFinder', child: Placeholder()),
+  };
+  static Map<Pattern, dynamic Function(BuildContext, BeamState, Object?)>
+      messagesBeamerRoutes = {
     homeRoute: (context, state, data) => const BeamPage(
         key: ValueKey('home'), title: 'Home: FixFinder', child: Placeholder()),
   };

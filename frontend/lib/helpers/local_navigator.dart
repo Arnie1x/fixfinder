@@ -16,6 +16,13 @@ Beamer beamerNavigator() => Beamer(
           transitionDelegate: const NoAnimationTransitionDelegate(),
           locationBuilder: RoutesLocationBuilder(routes: Routes.beamerRoutes)),
     );
+Beamer messagesBeamerNavigator() => Beamer(
+      // key: NavigationController.instance.nestedBeamerKey,
+      routerDelegate: BeamerDelegate(
+          transitionDelegate: const NoAnimationTransitionDelegate(),
+          locationBuilder:
+              RoutesLocationBuilder(routes: Routes.messagesBeamerRoutes)),
+    );
 
 // * This beamer navigator is for all the auth routes starting with /auth
 Beamer authBeamerNavigator() => Beamer(
