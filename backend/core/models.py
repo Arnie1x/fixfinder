@@ -31,6 +31,8 @@ class Order(models.Model):
         choices=State.choices,
         default=State.PENDING
     )
+    updated_at = models.DateTimeField(auto_now=True)
+    created_at = models.DateTimeField(auto_now_add=True)
     
 class Message(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT)
