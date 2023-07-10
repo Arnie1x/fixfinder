@@ -27,10 +27,10 @@ class DjangoAPI extends GetConnect {
 
 // Get request
   Future<Response> getData(String route) async {
-    await refreshTokens();
+    // await refreshTokens();
     final response = await get('$baseUrl/$route', headers: {
       'Content-Type': 'application/json',
-      'Authorization': 'Token ${storageService.box.read('access')}'
+      // 'Authorization': 'Token ${storageService.box.read('access')}'
     });
     if (response.status.hasError) {
       return Future.error(Exception(response.statusText));
@@ -41,16 +41,15 @@ class DjangoAPI extends GetConnect {
 
 // Post request
   Future<Response> postData(String route, Map data) async {
-    await refreshTokens();
+    // await refreshTokens();
     final response = await post(
       '$baseUrl/$route/',
       jsonEncode(data),
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Token ${storageService.box.read('access')}'
+        // 'Authorization': 'Token ${storageService.box.read('access')}'
       },
     );
-    print(response.body);
     if (response.status.hasError) {
       return Future.error(Exception(response.statusText));
     } else {
@@ -60,13 +59,13 @@ class DjangoAPI extends GetConnect {
 
 // Put request
   Future<Response> putData(String route, Map data) async {
-    await refreshTokens();
+    // await refreshTokens();
     final response = await put(
       '$baseUrl/$route/',
       jsonEncode(data),
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Token ${storageService.box.read('access')}'
+        // 'Authorization': 'Token ${storageService.box.read('access')}'
       },
     );
     if (response.status.hasError) {
@@ -78,12 +77,12 @@ class DjangoAPI extends GetConnect {
 
 // Put request
   Future<Response> deleteData(String route) async {
-    await refreshTokens();
+    // await refreshTokens();
     final response = await delete(
       '$baseUrl/$route/',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Token ${storageService.box.read('access')}'
+        // 'Authorization': 'Token ${storageService.box.read('access')}'
       },
     );
     if (response.status.hasError) {

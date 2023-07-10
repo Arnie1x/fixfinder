@@ -57,7 +57,7 @@ class RegisterController extends GetxController {
     if (value != passwordController.text) {
       return "Password does not match";
     }
-    return null;
+    return validateText(value);
   }
 
   void submitForm() async {
@@ -69,17 +69,18 @@ class RegisterController extends GetxController {
     Map user = {
       'username': usernameController.text,
       'email': usernameController.text,
-      'password': passwordController.text,
-      'confirmPassword': confirmPasswordController.text,
+      'password1': passwordController.text,
+      'password2': confirmPasswordController.text,
     };
 
     final response = await RegisterProvider().postData(user);
-    if (!response.status.hasError) {
+    if (response.statusCode == 200 || response.statusCode == 204) {
       CustomToast.toast('Record Created');
       // beam to Confirmation Email Page
-      Routes.routerDelegate.beamToReplacementNamed('/');
+      Routes.routerDelegate.beamToReplacementNamed('/auth');
     } else {
-      CustomToast.toast('Error ${response.status.code}: Try Again',
+      CustomToast.toast(
+          'Error ${response.status.code}: ${response.body['non_field_errors']}',
           isError: true);
     }
     loading();

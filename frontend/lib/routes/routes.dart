@@ -18,11 +18,13 @@ class Routes {
 
   static const String accountRoute = '/account';
 
+  static const String homeRoute = '/';
+
   static StorageService storageService = Get.find();
 
   static List<BeamGuard> guards = [
     BeamGuard(
-      pathPatterns: ['/auth'],
+      pathPatterns: ['/auth', '/auth/*'],
       guardNonMatching: true,
       check: (context, location) => storageService.box.read('access') != null,
       beamToNamed: (origin, target) => '/auth',
@@ -50,11 +52,14 @@ class Routes {
         title: 'Register: FixFinder',
         child: RegisterPage()),
     accountRoute: (context, state, data) => const BeamPage(
-        key: ValueKey('register'),
+        key: ValueKey('account'),
         title: 'Account: FixFinder',
         child: Placeholder()),
   };
 
   static Map<Pattern, dynamic Function(BuildContext, BeamState, Object?)>
-      beamerRoutes = {};
+      beamerRoutes = {
+    homeRoute: (context, state, data) => const BeamPage(
+        key: ValueKey('home'), title: 'Home: FixFinder', child: Placeholder()),
+  };
 }

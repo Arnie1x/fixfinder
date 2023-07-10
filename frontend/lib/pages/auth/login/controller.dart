@@ -46,22 +46,23 @@ class LoginController extends GetxController {
     var loading = CustomToast.loadingIndicator();
     Map user = {
       'email': emailController.text,
-      'password': passwordController.text
+      'password': passwordController.text,
     };
 
     StorageService storageService = Get.find();
 
     final response = await LoginProvider().postData(user);
-    if (!response.status.hasError) {
+    if (response.statusCode == 200) {
       CustomToast.toast('Welcome');
-      await storageService.box.write('access', response.body['access']);
-      await storageService.box.write('refresh', response.body['refresh']);
-      await storageService.box
-          .write('username', response.body['user']['username']);
-      await storageService.box.write('email', response.body['user']['email']);
+      await storageService.box.write('access', response.body['key']);
+      // await storageService.box.write('refresh', response.body['refresh']);
+      // await storageService.box
+      //     .write('username', response.body['user']['username']);
+      // await storageService.box.write('email', response.body['user']['email']);
       Routes.routerDelegate.beamToReplacementNamed('/');
     } else {
-      CustomToast.toast('Error ${response.status.code}: Try Again',
+      print('Did not work');
+      CustomToast.toast('Error ${response.status.code}: ${response.body}',
           isError: true);
     }
     loading();

@@ -29,7 +29,7 @@ class LoginPage extends GetView<LoginController> {
               // Logo
               Text(
                 'Login',
-                style: Theme.of(context).textTheme.headlineSmall,
+                style: Theme.of(context).textTheme.headlineMedium,
               ),
               const SizedBox(
                 height: 20,
@@ -46,7 +46,22 @@ class LoginPage extends GetView<LoginController> {
                 inputType: TextInputType.visiblePassword,
                 obscureText: true,
               ),
-
+              Align(
+                alignment: Alignment.centerRight,
+                child: InkWell(
+                  onTap: () {
+                    Routes.routerDelegate.beamToNamed('/auth/register');
+                  },
+                  child: Text(
+                    'Forgot Password?',
+                    style:
+                        TextStyle(color: Theme.of(context).colorScheme.primary),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
               FilledButton(
                 onPressed: () {
                   controller.submitForm(context);
@@ -67,8 +82,7 @@ class LoginPage extends GetView<LoginController> {
               Center(
                 child: InkWell(
                   onTap: () {
-                    Routes.routerDelegate
-                        .beamToReplacementNamed('/auth/register');
+                    Routes.routerDelegate.beamToNamed('/auth/register');
                   },
                   child: Text(
                     'Are you a new user?',
