@@ -35,6 +35,7 @@ class SiteLayoutLarge extends StatelessWidget {
                       ),
                       Expanded(child: Container()),
                       SearchBar(
+                        elevation: const MaterialStatePropertyAll(2),
                         hintText: 'Search for a Technician',
                         hintStyle: MaterialStatePropertyAll(
                             Theme.of(context).textTheme.bodyLarge),
@@ -71,21 +72,13 @@ class SiteLayoutLarge extends StatelessWidget {
                         flex: 3,
                         child: Padding(
                           padding: const EdgeInsets.fromLTRB(100, 0, 10, 0),
-                          child: Container(
-                              color: Theme.of(context)
-                                  .colorScheme
-                                  .secondaryContainer,
-                              child: beamerNavigator()),
+                          child: Container(child: beamerNavigator()),
                         )),
                     Expanded(
                         flex: 1,
                         child: Padding(
                           padding: const EdgeInsets.fromLTRB(10, 0, 100, 0),
-                          child: Container(
-                              color: Theme.of(context)
-                                  .colorScheme
-                                  .tertiaryContainer,
-                              child: messagesBeamerNavigator()),
+                          child: Container(child: messagesBeamerNavigator()),
                         )),
                   ],
                 ),

@@ -3,6 +3,7 @@ import 'package:fixfinder/helpers/layout/site_layout.dart';
 import 'package:fixfinder/pages/auth/auth.dart';
 import 'package:fixfinder/pages/auth/login/login.dart';
 import 'package:fixfinder/pages/auth/register/register.dart';
+import 'package:fixfinder/pages/home/home.dart';
 import 'package:fixfinder/services/storage_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -62,7 +63,7 @@ class Routes {
   static Map<Pattern, dynamic Function(BuildContext, BeamState, Object?)>
       beamerRoutes = {
     homeRoute: (context, state, data) => const BeamPage(
-        key: ValueKey('home'), title: 'Home: FixFinder', child: Placeholder()),
+        key: ValueKey('home'), title: 'Home: FixFinder', child: HomePage()),
   };
   static Map<Pattern, dynamic Function(BuildContext, BeamState, Object?)>
       messagesBeamerRoutes = {
