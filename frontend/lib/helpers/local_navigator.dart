@@ -11,13 +11,13 @@ import 'package:fixfinder/routes/routes.dart';
 
 // * This beamer navigator is for all the main routes starting from *
 Beamer beamerNavigator() => Beamer(
-      // key: NavigationController.instance.nestedBeamerKey,
+      key: NavigationController.instance.mainBeamerKey,
       routerDelegate: BeamerDelegate(
           transitionDelegate: const NoAnimationTransitionDelegate(),
           locationBuilder: RoutesLocationBuilder(routes: Routes.beamerRoutes)),
     );
 Beamer messagesBeamerNavigator() => Beamer(
-      // key: NavigationController.instance.nestedBeamerKey,
+      key: NavigationController.instance.messagesBeamerKey,
       routerDelegate: BeamerDelegate(
           transitionDelegate: const NoAnimationTransitionDelegate(),
           locationBuilder:

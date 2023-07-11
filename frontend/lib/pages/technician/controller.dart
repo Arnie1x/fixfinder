@@ -19,9 +19,11 @@ class TechnicianListController extends GetxController
 }
 
 class TechnicianController extends GetxController with StateMixin<Technician> {
+  late int id;
+  TechnicianController({required this.id});
   @override
   void onInit() {
-    TechnicianProvider().getData().then((resp) {
+    TechnicianProvider().getData(id).then((resp) {
       change(resp, status: RxStatus.success());
     }, onError: (err) {
       change(

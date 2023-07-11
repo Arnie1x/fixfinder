@@ -76,6 +76,24 @@ class DjangoAPI extends GetConnect {
   }
 
 // Put request
+  Future<Response> patchData(String route, Map data) async {
+    // await refreshTokens();
+    final response = await patch(
+      '$baseUrl/$route/',
+      jsonEncode(data),
+      headers: {
+        'Content-Type': 'application/json',
+        // 'Authorization': 'Token ${storageService.box.read('access')}'
+      },
+    );
+    if (response.status.hasError) {
+      return Future.error(Exception(response.statusText));
+    } else {
+      return response;
+    }
+  }
+
+// Delete request
   Future<Response> deleteData(String route) async {
     // await refreshTokens();
     final response = await delete(

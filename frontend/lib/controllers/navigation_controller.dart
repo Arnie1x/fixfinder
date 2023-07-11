@@ -8,6 +8,7 @@ class NavigationController extends GetxController {
   final GlobalKey<BeamerState> mainBeamerKey = GlobalKey();
   final GlobalKey<BeamerState> nestedBeamerKey = GlobalKey();
   final GlobalKey<BeamerState> authBeamerKey = GlobalKey();
+  final GlobalKey<BeamerState> messagesBeamerKey = GlobalKey();
   late int lastSelectedIndex = 0;
 
   navigateTo(context, String routeName) {

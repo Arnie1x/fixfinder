@@ -38,7 +38,7 @@ class Technician {
     data['services'] = services;
     // data['updated_at'] = updatedAt;
     // data['created_at'] = createdAt;
-    // data['user'] = user;
+    data['user'] = user;
     return data;
   }
 }

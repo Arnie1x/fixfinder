@@ -1,9 +1,11 @@
 import 'package:beamer/beamer.dart';
 import 'package:fixfinder/helpers/layout/site_layout.dart';
+import 'package:fixfinder/pages/account/technician/form.dart';
 import 'package:fixfinder/pages/account/technician/technician.dart';
 import 'package:fixfinder/pages/auth/auth.dart';
 import 'package:fixfinder/pages/auth/login/login.dart';
 import 'package:fixfinder/pages/auth/register/register.dart';
+import 'package:fixfinder/pages/chats/home.dart';
 import 'package:fixfinder/pages/home/home.dart';
 import 'package:fixfinder/services/storage_service.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +22,9 @@ class Routes {
   static const String passwordChangeRoute = '/auth/user/password-change';
 
   static const String accountRoute = '/account';
+
+  static const String editRoute = 'edit';
+  static const String newRoute = 'new';
 
   static const String homeRoute = '/';
   static const String technicianAccountRoute = '/technician';
@@ -69,11 +74,21 @@ class Routes {
     '$technicianAccountRoute/:id': (context, state, data) => BeamPage(
         key: ValueKey('technician-${state.pathParameters['id']}'),
         title: 'Technician ${state.pathParameters['id']}: FixFinder',
-        child: const TechnicianAccountPage()),
+        child: TechnicianAccountPage(
+          route: state.uri.path,
+          id: state.pathParameters['id'] ?? '-1',
+        )),
+    '$technicianAccountRoute/:id/$editRoute': (context, state, data) =>
+        BeamPage(
+            key: ValueKey('technician-edit-${state.pathParameters['id']}'),
+            title: 'Technician ${state.pathParameters['id']}: FixFinder',
+            child: TechnicianFormPage(
+              id: int.parse(state.pathParameters['id']!),
+            )),
   };
   static Map<Pattern, dynamic Function(BuildContext, BeamState, Object?)>
       messagesBeamerRoutes = {
     homeRoute: (context, state, data) => const BeamPage(
-        key: ValueKey('home'), title: 'Home: FixFinder', child: Placeholder()),
+        key: ValueKey('home'), title: 'Home: FixFinder', child: ChatHomePage()),
   };
 }

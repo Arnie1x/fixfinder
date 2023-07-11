@@ -19,8 +19,8 @@ class TechnicianProvider extends GetConnect {
     }
   }
 
-  Future<Technician> getData() async {
-    final response = await DjangoAPI().getData(route);
+  Future<Technician> getData(int id) async {
+    final response = await DjangoAPI().getData('$route/$id');
     if (response.status.hasError) {
       return Future.error(Exception(response.statusText));
     } else {

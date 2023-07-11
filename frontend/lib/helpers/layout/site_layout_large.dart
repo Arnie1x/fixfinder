@@ -1,4 +1,6 @@
+import 'package:beamer/beamer.dart';
 import 'package:fixfinder/helpers/local_navigator.dart';
+import 'package:fixfinder/routes/routes.dart';
 import 'package:flutter/material.dart';
 
 class SiteLayoutLarge extends StatelessWidget {
@@ -21,7 +23,9 @@ class SiteLayoutLarge extends StatelessWidget {
                     children: [
                       Material(
                         child: InkWell(
-                          onTap: () {},
+                          onTap: () {
+                            Beamer.of(context).beamToNamed(Routes.homeRoute);
+                          },
                           child: Text(
                             'fixfinder',
                             style: Theme.of(context)
@@ -47,7 +51,9 @@ class SiteLayoutLarge extends StatelessWidget {
                       ),
                       Expanded(child: Container()),
                       IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Beamer.of(context).beamToNamed(Routes.homeRoute);
+                        },
                         icon: const Icon(Icons.home_rounded),
                         iconSize: 42,
                         color: Theme.of(context).colorScheme.primary,
