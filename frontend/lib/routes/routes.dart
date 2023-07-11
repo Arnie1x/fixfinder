@@ -1,5 +1,6 @@
 import 'package:beamer/beamer.dart';
 import 'package:fixfinder/helpers/layout/site_layout.dart';
+import 'package:fixfinder/pages/account/technician/technician.dart';
 import 'package:fixfinder/pages/auth/auth.dart';
 import 'package:fixfinder/pages/auth/login/login.dart';
 import 'package:fixfinder/pages/auth/register/register.dart';
@@ -21,6 +22,7 @@ class Routes {
   static const String accountRoute = '/account';
 
   static const String homeRoute = '/';
+  static const String technicianAccountRoute = '/technician';
 
   static StorageService storageService = Get.find();
 
@@ -64,6 +66,10 @@ class Routes {
       beamerRoutes = {
     homeRoute: (context, state, data) => const BeamPage(
         key: ValueKey('home'), title: 'Home: FixFinder', child: HomePage()),
+    '$technicianAccountRoute/:id': (context, state, data) => BeamPage(
+        key: ValueKey('technician-${state.pathParameters['id']}'),
+        title: 'Technician ${state.pathParameters['id']}: FixFinder',
+        child: const TechnicianAccountPage()),
   };
   static Map<Pattern, dynamic Function(BuildContext, BeamState, Object?)>
       messagesBeamerRoutes = {

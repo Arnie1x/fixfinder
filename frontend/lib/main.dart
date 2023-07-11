@@ -40,7 +40,32 @@ class MyApp extends StatelessWidget {
           colorScheme: lightColorScheme,
           textTheme: GoogleFonts.latoTextTheme(
             Theme.of(context).textTheme,
-          )),
+          ).copyWith(
+              // bodyLarge: Theme.of(context)
+              //     .textTheme
+              //     .bodyLarge
+              //     ?.copyWith(color: Theme.of(context).colorScheme.onBackground),
+              // bodyMedium: Theme.of(context)
+              //     .textTheme
+              //     .bodyMedium
+              //     ?.copyWith(color: Theme.of(context).colorScheme.onBackground),
+              // bodySmall: Theme.of(context)
+              //     .textTheme
+              //     .bodySmall
+              //     ?.copyWith(color: Theme.of(context).colorScheme.onBackground),
+              // headlineLarge: Theme.of(context)
+              //     .textTheme
+              //     .headlineLarge
+              //     ?.copyWith(color: Theme.of(context).colorScheme.secondary),
+              // headlineMedium: Theme.of(context)
+              //     .textTheme
+              //     .headlineMedium
+              //     ?.copyWith(color: Theme.of(context).colorScheme.secondary),
+              // headlineSmall: Theme.of(context)
+              //     .textTheme
+              //     .headlineSmall
+              //     ?.copyWith(color: Theme.of(context).colorScheme.secondary),
+              )),
       darkTheme: ThemeData(
           useMaterial3: true,
           colorScheme: darkColorScheme,
