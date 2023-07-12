@@ -34,17 +34,3 @@ class Order(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     created_at = models.DateTimeField(auto_now_add=True)
     
-class Message(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT)
-    technician = models.ForeignKey(Technician, on_delete=models.PROTECT)
-    body = models.TextField()
-    updated_at = models.DateTimeField(auto_now=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-    
-    def __str__(self):
-        return self.body
-    
-    class Meta:
-        ordering = ['-id']
-    
-    

@@ -42,7 +42,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     
-
+    # channels
+    'channels',
+    
     # Django Rest Framework
 
     'rest_framework',
@@ -63,8 +65,10 @@ INSTALLED_APPS = [
     # 'django_use_email_as_username.apps.DjangoUseEmailAsUsernameConfig',
     # 'custom_user.apps.CustomUserConfig',
 
+
     # Project Apps
-    'core.apps.CoreConfig'
+    'core.apps.CoreConfig',
+    'chat.apps.ChatConfig'
 
 ]
 
@@ -97,7 +101,13 @@ TEMPLATES = [
     },
 ]
 
+ASGI_APPLICATION = 'fixfinder.asgi.application'
 WSGI_APPLICATION = 'fixfinder.wsgi.application'
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': "channels.layers.InMemoryChannelLayer"
+        }
+    }
 
 
 # Database

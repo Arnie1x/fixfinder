@@ -3,6 +3,6 @@ from .models import *
 # Register your models here.
 
 myModels = [
-    Technician, Order
+    Chat, Message
 ]
 admin.site.register(myModels)

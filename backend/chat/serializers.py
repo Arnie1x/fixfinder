@@ -1,12 +1,12 @@
 from rest_framework.serializers import ModelSerializer
 from .models import *
 
-class TechnicianSerializer(ModelSerializer):
+class MessageSerializer(ModelSerializer):
     class Meta:
-        model = Technician
+        model = Message
         fields = '__all__'
-
-class OrderSerializer(ModelSerializer):
+        
+class ChatSerializer(ModelSerializer):
     class Meta:
-        model = Order
+        model = Chat
         fields = '__all__'

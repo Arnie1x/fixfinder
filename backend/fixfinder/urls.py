@@ -31,5 +31,8 @@ urlpatterns = [
     path('auth/password-reset/', PasswordResetView.as_view()),
     path('auth/password-reset-confirm/<uidb64>/<token>/', PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
 
-    path('api/', include('core.urls'))
+    path('api/', include('core.urls')),
+    
+    path('chat/', include('chat.urls')),
+
 ]
