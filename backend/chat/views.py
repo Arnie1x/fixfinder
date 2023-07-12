@@ -16,11 +16,11 @@ def chatPage(request, chat_name, pk):
 
 class ChatList(generics.ListCreateAPIView):
     queryset = Chat.objects.all()
-    serializer_class = MessageSerializer
+    serializer_class = ChatSerializer
 
 class ChatDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Chat.objects.all()
-    serializer_class = MessageSerializer
+    serializer_class = ChatSerializer
     
 class MessageList(generics.ListCreateAPIView):
     queryset = Message.objects.all()

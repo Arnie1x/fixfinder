@@ -7,7 +7,7 @@
         <h2>Chat Name: {{chat_name}}</h2>
     </center>
     <br>
-    
+
     <div class="chat__item__container" id="id_chat_item_container" style="font-size: 20px">
         <br />
         <input type="text" id="id_message_send_input" />
@@ -16,8 +16,8 @@
         <br />
     </div>
     <script>
-        const chatSocket = new WebSocket("ws://" + window.location.host + "/ws/api/technicians/" + {{pk}} + "/chat/" + 1 + "/");
-        
+        const chatSocket = new WebSocket("ws://" + window.location.host + "/chat/" + 1 + "/");
+
         console.log(window.location.host);
         chatSocket.onopen = function (e) {
             console.log("The connection was setup successfully !");
