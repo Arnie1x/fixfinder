@@ -1,6 +1,6 @@
-# FixConnect - Technician-Customer Web Application
+# FixFinder - Technician-Customer Web Application
 
-FixConnect is a web application designed to connect technicians with customers, providing a streamlined platform for finding and booking reliable technician services. This README provides an in-depth explanation of how the application works, including its key features, installation instructions, and usage guidelines.
+FixFinder is a web application designed to connect technicians with customers, providing a streamlined platform for finding and booking reliable technician services. This README provides an in-depth explanation of how the application works, including its key features, installation instructions, and usage guidelines.
 
 ## Table of Contents
 - [Features](#features)
@@ -48,11 +48,11 @@ FixConnect is a web application designed to connect technicians with customers, 
 7. After the service is completed, customers can rate the technician and leave a review to provide feedback.
 
 ## Contributing
-We welcome contributions from the community! If you'd like to contribute to FixConnect, please follow our [Contribution Guidelines](CONTRIBUTING.md) for details on how to get started.
+We welcome contributions from the community! If you'd like to contribute to FixFinder, please follow our [Contribution Guidelines](CONTRIBUTING.md) for details on how to get started.
 
 ## License
-FixConnect is released under the [MIT License](LICENSE). Feel free to use, modify, and distribute this project as per the terms of the license.
+FixFinder is released under the [MIT License](LICENSE). Feel free to use, modify, and distribute this project as per the terms of the license.
 
 ---
 
-We hope this documentation provides a comprehensive understanding of the FixConnect web application.
+We hope this documentation provides a comprehensive understanding of the FixFinder web application.
