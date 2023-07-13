@@ -22,9 +22,9 @@ FixFinder is a web application designed to connect technicians with customers, p
 
 ## Installation
 ### Pre-Requisites
-1. [Python](https://www.python.org/downloads/)
-2. [Django](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwj3qOjd4IuAAxXiQ0EAHUJADVUQFnoECBcQAQ&url=https%3A%2F%2Fdocs.djangoproject.com%2Fen%2F4.2%2Ftopics%2Finstall%2F&usg=AOvVaw1qEQ6UM0hycn1frbGP1Qr8&opi=89978449)
-3. [MySQL](https://dev.mysql.com/downloads/installer/)
+1. [Python version 3 or higher](https://www.python.org/downloads/)
+2. [Django version 4.2 or higher](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwj3qOjd4IuAAxXiQ0EAHUJADVUQFnoECBcQAQ&url=https%3A%2F%2Fdocs.djangoproject.com%2Fen%2F4.2%2Ftopics%2Finstall%2F&usg=AOvVaw1qEQ6UM0hycn1frbGP1Qr8&opi=89978449)
+3. [MySQL Verison 8.0.0 or higher](https://dev.mysql.com/downloads/installer/)
 4. [Flutter Version 3.0 or higher](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwiDvI-R4YuAAxWGWUEAHYXoCAcQFnoECB4QAQ&url=https%3A%2F%2Fdocs.flutter.dev%2Fget-started%2Finstall&usg=AOvVaw0_DysGRxe6bHMb0c8Whvun&opi=89978449)
 
 ### Instructions
