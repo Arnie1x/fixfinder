@@ -22,16 +22,16 @@ FixFinder is a web application designed to connect technicians with customers, p
 
 ## Installation
 ### Pre-Requisites
-1. Python
-2. Django
-3. MySQL
-4. Flutter Version 3.0 or higher
+1. [Python](https://www.python.org/downloads/)
+2. [Django](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwj3qOjd4IuAAxXiQ0EAHUJADVUQFnoECBcQAQ&url=https%3A%2F%2Fdocs.djangoproject.com%2Fen%2F4.2%2Ftopics%2Finstall%2F&usg=AOvVaw1qEQ6UM0hycn1frbGP1Qr8&opi=89978449)
+3. [MySQL](https://dev.mysql.com/downloads/installer/)
+4. [Flutter Version 3.0 or higher](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwiDvI-R4YuAAxWGWUEAHYXoCAcQFnoECB4QAQ&url=https%3A%2F%2Fdocs.flutter.dev%2Fget-started%2Finstall&usg=AOvVaw0_DysGRxe6bHMb0c8Whvun&opi=89978449)
 
 ### Instructions
 1. Clone the repository: `git clone https://github.com/Arnie1x/fixconnect.git`
-2. Create a Django Virtual Environment for a local server
+2. Create a Django Virtual Environment for a local server `virtualenv env`
 3. Install the necessary Django dependencies: `pip install -r requirements.txt`
-4. run `flutter clean` in order to set up Flutter and Dart properly in case of any errors
+4. run `flutter clean` and `flutter fix` in order to set up Flutter and Dart properly in case of any errors. This ensures project compatibility with your project and flutter
 5. Set up the database and configure the connection details in the application's configuration file `.env`.
 6. Start the Django server: `python manage.py runserver`
 7. Check the `api.dart` file and ensure the Django server's URL matches the one that is on your terminal
