@@ -4,11 +4,11 @@ from django.contrib.auth.views import LoginView, LogoutView
 
 
 urlpatterns = [
-    path('messages/', chat_views.MessageList.as_view()),
-    path('messages/<str:pk>/', chat_views.MessageDetail.as_view()),
+    path('chats/<str:chat>/messages/', chat_views.MessageList.as_view()),
+    path('chats/<str:chat>/messages/<str:message>/', chat_views.MessageDetail.as_view()),
     
     path('chats/', chat_views.ChatList.as_view()),
-    path('chats/<str:pk>/', chat_views.ChatDetail.as_view()),
+    path('chats/<str:chat>/', chat_views.ChatDetail.as_view()),
 
 	path("<str:chat_name>/", chat_views.chatPage, name="chat-page"),
 	# # login-section

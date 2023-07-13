@@ -20,6 +20,6 @@ from chat.consumers import ChatConsumer
 # will handle the chat functionality.
 websocket_urlpatterns = [
  re_path(
-            r"ws/chat/(?P<chat_name>\w+)/$", ChatConsumer.as_asgi(),
+            r"ws/api/technicians/(?P<pk>\w+)/chat/(?P<chat_name>\w+)/$", ChatConsumer.as_asgi(),
         ),
 ]
