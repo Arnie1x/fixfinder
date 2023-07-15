@@ -3,7 +3,7 @@
 
 <body>
     <center>
-        <h1>Hello , Welcome to my chat site ! {{request.user.id}}</h1>
+        <h1>Hello , Welcome to my chat site ! {{request.user.id}} </h1>
         <h2>Chat Name: {{chat_name}}</h2>
     </center>
     <br>
@@ -16,7 +16,7 @@
         <br />
     </div>
     <script>
-        const chatSocket = new WebSocket("ws://" + window.location.host + "/chat/" + 1 + "/");
+        const chatSocket = new WebSocket("ws://" + window.location.host + "/ws/api/technicians/2/chat/" + 1 + "/");
 
         console.log(window.location.host);
         chatSocket.onopen = function (e) {

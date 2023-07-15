@@ -1,5 +1,6 @@
 class Order {
   int? id;
+  int? amount;
   String? state;
   String? updatedAt;
   String? createdAt;
@@ -8,6 +9,7 @@ class Order {
 
   Order(
       {this.id,
+      this.amount,
       this.state,
       this.updatedAt,
       this.createdAt,
@@ -16,6 +18,7 @@ class Order {
 
   Order.fromJson(Map<String, dynamic> json) {
     id = json['id'];
+    amount = json['amount'];
     state = json['state'];
     updatedAt = json['updated_at'];
     createdAt = json['created_at'];
@@ -25,10 +28,11 @@ class Order {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    // data['id'] = id;
+    // data['id'] = this.id;
+    data['amount'] = amount;
     data['state'] = state;
-    // data['updated_at'] = updatedAt;
-    // data['created_at'] = createdAt;
+    // data['updated_at'] = this.updatedAt;
+    // data['created_at'] = this.createdAt;
     data['technician'] = technician;
     data['user'] = user;
     return data;

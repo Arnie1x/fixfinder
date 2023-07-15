@@ -1,30 +1,30 @@
 import 'package:fixfinder/api/api.dart';
-import 'package:fixfinder/models/chat.dart';
+import 'package:fixfinder/models/order.dart';
 import 'package:get/get.dart';
 
-class ChatProvider extends GetConnect {
-  String route = 'chat/chats';
-  late List<Chat> chats;
+class OrderProvider extends GetConnect {
+  String route = 'api/orders';
+  late List<Order> orders;
 
-  Future<List<Chat>> getListData() async {
+  Future<List<Order>> getListData() async {
     final response = await DjangoAPI().getData(route);
     if (response.status.hasError) {
       return Future.error(Exception(response.statusText));
     } else {
-      chats = <Chat>[];
+      orders = <Order>[];
       response.body.forEach((v) {
-        chats.add(Chat.fromJson(v));
+        orders.add(Order.fromJson(v));
       });
-      return chats;
+      return orders;
     }
   }
 
-  Future<Chat> getData(int id) async {
+  Future<Order> getData(int id) async {
     final response = await DjangoAPI().getData('$route/$id');
     if (response.status.hasError) {
       return Future.error(Exception(response.statusText));
     } else {
-      return Chat.fromJson(response.body);
+      return Order.fromJson(response.body);
     }
   }
 }

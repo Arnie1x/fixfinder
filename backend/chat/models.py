@@ -10,7 +10,6 @@ class Chat(models.Model):
     
     class Meta:
         ordering = ['-id']        
-    
 
 class Message(models.Model):
     chat = models.ForeignKey(Chat, on_delete=models.CASCADE)
@@ -25,7 +24,7 @@ class Message(models.Model):
     class Meta:
         ordering = ['-id']
     
-    # @classmethod
-    # def create(cls, chat, author, body):
-    #     message = cls(chat = chat, author = author, body = body)
-    #     return message
+    @classmethod
+    def create(cls, chat, author, body):
+        message = cls(chat = chat, author = author, body = body)
+        return message

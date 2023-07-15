@@ -1,6 +1,8 @@
 import 'dart:math';
 
+import 'package:fixfinder/controllers/navigation_controller.dart';
 import 'package:fixfinder/pages/chats/controller.dart';
+import 'package:fixfinder/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -27,7 +29,11 @@ class ChatHomePage extends GetView<ChatListController> {
               children: data!
                   .map((chat) => Material(
                         child: InkWell(
-                          onTap: () {},
+                          onTap: () {
+                            NavigationController.instance.messagesBeamerKey
+                                .currentState?.routerDelegate
+                                .beamToNamed(Routes.chatsRoute);
+                          },
                           child: Card(
                             clipBehavior: Clip.antiAlias,
                             margin: const EdgeInsets.all(10),

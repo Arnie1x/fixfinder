@@ -4,15 +4,14 @@ import 'package:fixfinder/services/storage_service.dart';
 import 'package:get/get.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 
-const baseUrl = 'http://127.0.0.1:8000';
-
 class DjangoAPI extends GetConnect {
+  final serverBaseUrl = 'http://127.0.0.1:8000';
   StorageService storageService = Get.find();
 
   Future<void> refreshTokens() async {
     if (!JwtDecoder.isExpired(storageService.box.read('access'))) {
       final response = await post(
-          '$baseUrl/token/refresh/', storageService.box.read('refresh'),
+          '$serverBaseUrl/token/refresh/', storageService.box.read('refresh'),
           headers: {
             'Content-Type': 'application/json',
           });
@@ -28,7 +27,7 @@ class DjangoAPI extends GetConnect {
 // Get request
   Future<Response> getData(String route) async {
     // await refreshTokens();
-    final response = await get('$baseUrl/$route', headers: {
+    final response = await get('$serverBaseUrl/$route', headers: {
       'Content-Type': 'application/json',
       // 'Authorization': 'Token ${storageService.box.read('access')}'
     });
@@ -43,7 +42,7 @@ class DjangoAPI extends GetConnect {
   Future<Response> postData(String route, Map data) async {
     // await refreshTokens();
     final response = await post(
-      '$baseUrl/$route/',
+      '$serverBaseUrl/$route/',
       jsonEncode(data),
       headers: {
         'Content-Type': 'application/json',
@@ -61,7 +60,7 @@ class DjangoAPI extends GetConnect {
   Future<Response> putData(String route, Map data) async {
     // await refreshTokens();
     final response = await put(
-      '$baseUrl/$route/',
+      '$serverBaseUrl/$route/',
       jsonEncode(data),
       headers: {
         'Content-Type': 'application/json',
@@ -79,7 +78,7 @@ class DjangoAPI extends GetConnect {
   Future<Response> patchData(String route, Map data) async {
     // await refreshTokens();
     final response = await patch(
-      '$baseUrl/$route/',
+      '$serverBaseUrl/$route/',
       jsonEncode(data),
       headers: {
         'Content-Type': 'application/json',
@@ -97,7 +96,7 @@ class DjangoAPI extends GetConnect {
   Future<Response> deleteData(String route) async {
     // await refreshTokens();
     final response = await delete(
-      '$baseUrl/$route/',
+      '$serverBaseUrl/$route/',
       headers: {
         'Content-Type': 'application/json',
         // 'Authorization': 'Token ${storageService.box.read('access')}'

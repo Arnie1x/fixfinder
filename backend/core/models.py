@@ -21,10 +21,12 @@ class Technician(models.Model):
 class Order(models.Model):
     technician = models.ForeignKey(Technician, on_delete=models.PROTECT)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    amount = models.IntegerField()
     class State(models.TextChoices):
         PENDING = 'pending', 'Pending'
         ACCEPTED = 'accepted', 'Accepted'
         REJECTED ='rejected', 'Rejected'
+        COMPLETED ='completed', 'Completed'
     
     state = models.CharField(
         max_length=10,

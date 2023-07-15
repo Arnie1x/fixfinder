@@ -10,6 +10,7 @@ class InputField extends StatelessWidget {
   final String? Function(String?)? validator;
   final int maxLines;
   final bool obscureText;
+  final Widget? suffixIcon;
   const InputField(
       {super.key,
       required this.label,
@@ -20,6 +21,7 @@ class InputField extends StatelessWidget {
       this.inputType,
       this.helperText,
       this.maxLines = 1,
+      this.suffixIcon,
       this.obscureText = false});
 
   @override
@@ -39,6 +41,7 @@ class InputField extends StatelessWidget {
         maxLines: maxLines,
         style: TextStyle(color: Theme.of(context).colorScheme.onBackground),
         decoration: InputDecoration(
+            suffixIcon: suffixIcon,
             labelText: label,
             border: const OutlineInputBorder(),
             helperText: helperText ?? "",

@@ -37,6 +37,7 @@ dependencies:
   bot_toast: ^4.0.3
   get_storage: ^2.1.1
   jwt_decoder: ^2.0.1
+  web_socket_channel: ^2.4.0
 
 
   # The following adds the Cupertino Icons font to your application.

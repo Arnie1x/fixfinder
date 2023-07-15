@@ -5,6 +5,7 @@ import 'package:fixfinder/pages/account/technician/technician.dart';
 import 'package:fixfinder/pages/auth/auth.dart';
 import 'package:fixfinder/pages/auth/login/login.dart';
 import 'package:fixfinder/pages/auth/register/register.dart';
+import 'package:fixfinder/pages/chats/chat.dart';
 import 'package:fixfinder/pages/chats/home.dart';
 import 'package:fixfinder/pages/home/home.dart';
 import 'package:fixfinder/services/storage_service.dart';
@@ -27,6 +28,7 @@ class Routes {
   static const String newRoute = 'new';
 
   static const String homeRoute = '/';
+  static const String chatsRoute = '/chat';
   static const String technicianAccountRoute = '/technician';
 
   static StorageService storageService = Get.find();
@@ -89,6 +91,12 @@ class Routes {
   static Map<Pattern, dynamic Function(BuildContext, BeamState, Object?)>
       messagesBeamerRoutes = {
     homeRoute: (context, state, data) => const BeamPage(
-        key: ValueKey('home'), title: 'Home: FixFinder', child: ChatHomePage()),
+        key: ValueKey('chat-home'),
+        title: 'Chats: FixFinder',
+        child: ChatHomePage()),
+    chatsRoute: (context, state, data) => const BeamPage(
+        key: ValueKey('chat-page'),
+        title: 'Chats: FixFinder',
+        child: ChatPage()),
   };
 }

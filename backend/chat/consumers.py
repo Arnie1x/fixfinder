@@ -1,3 +1,4 @@
+import datetime
 import json
 from channels.generic.websocket import AsyncWebsocketConsumer
 from chat import models
@@ -55,17 +56,22 @@ class ChatConsumer(AsyncWebsocketConsumer):
         message = text_data_json["message"]
         author = text_data_json["author"]
         technician = self.pk
+        # user_1 = await getUserModel(author) # type: ignore
         user_1 = await getUserModel(author) # type: ignore
         user_2 = await getTechnicianUserModel(technician) # type: ignore
         chat = models.Chat(
             id = self.chat_name,
             user_1 = user_1,
-            user_2 = user_2
+            user_2 = user_2,
+            created_at = datetime.datetime.now(),
+            updated_at = datetime.datetime.now()
         )
         messageModel = models.Message(
             chat = chat,
             author = user_1,
-            body = message
+            body = message,
+            created_at = datetime.datetime.now(),
+            updated_at = datetime.datetime.now()
         )
         await saveModels(chat, messageModel)
         await self.channel_layer.group_send(

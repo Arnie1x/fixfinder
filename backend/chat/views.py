@@ -24,7 +24,8 @@ class ChatList(generics.ListCreateAPIView):
     def get_queryset(self):
         # self.technician = get_object_or_404(core.Technician, pk = self.kwargs["pk"])
         # print("User - %s" % User.objects.get(technician__pk=self.technician).pk)
-        return Chat.objects.filter(user_1=User.objects.get(technician__pk=self.kwargs["pk"]).pk) | Chat.objects.filter(user_2=User.objects.get(technician__pk=self.kwargs["pk"]).pk)
+        # return Chat.objects.filter(user_1=self.request.user.pk) | Chat.objects.filter(user_2=self.request.user.pk)
+        return Chat.objects.filter(user_1=1) | Chat.objects.filter(user_2=1)
 
 class ChatDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Chat.objects.all()
