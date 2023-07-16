@@ -179,21 +179,22 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.TokenAuthentication',
-        # 'dj_rest_auth.jwt_auth.JWTCookieAuthentication'
+        'dj_rest_auth.jwt_auth.JWTCookieAuthentication'
     ],
 }
 
-# REST_AUTH = {
-#     'USE_JWT': True,
-#     'JWT_AUTH_HTTPONLY':False,
-#     'JWT_AUTH_COOKIE': 'fixfinder-auth',
-#     'JWT_AUTH_REFRESH_COOKIE': 'fixfinder-refresh-token',
-# }
+REST_AUTH = {
+    'USE_JWT': True,
+    'JWT_AUTH_HTTPONLY':False,
+    'JWT_AUTH_COOKIE': 'fixfinder-auth',
+    'JWT_AUTH_REFRESH_COOKIE': 'fixfinder-refresh-token',
+    'OLD_PASSWORD_FIELD_ENABLED': False,
+}
 
-# SIMPLE_JWT = {
-#     'REFRESH_TOKEN_LIFETIME': timedelta(days=3),
-#     'ROTATE_REFRESH_TOKENS': True,
-# }
+SIMPLE_JWT = {
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=3),
+    'ROTATE_REFRESH_TOKENS': True,
+}
 
 AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
@@ -202,14 +203,15 @@ AUTHENTICATION_BACKENDS = [
 
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_EMAIL_VERIFICATION = 'optional'
 ACCOUNT_CONFIRM_EMAIL_ON_GET = True
 LOGIN_URL = 'http://127.0.0.1:8000/auth/login/'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = env('EMAIL_HOST')
-EMAIL_USE_TLS = False
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
 EMAIL_PORT = env('EMAIL_PORT')
 EMAIL_HOST_USER = env('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
-DEFAULT_FROM_EMAIL = "account@sendinblue.com" 
+DEFAULT_FROM_EMAIL = "account@brevo.com" 

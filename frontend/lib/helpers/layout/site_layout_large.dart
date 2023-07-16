@@ -62,7 +62,9 @@ class SiteLayoutLarge extends StatelessWidget {
                         width: 25,
                       ),
                       IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Beamer.of(context).beamToNamed(Routes.accountRoute);
+                        },
                         icon: const Icon(Icons.account_circle_outlined),
                         iconSize: 42,
                         color: Theme.of(context).colorScheme.primary,

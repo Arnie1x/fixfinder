@@ -1,5 +1,7 @@
+import 'package:fixfinder/controllers/navigation_controller.dart';
 import 'package:fixfinder/pages/auth/register/provider.dart';
 import 'package:fixfinder/routes/routes.dart';
+import 'package:fixfinder/services/storage_service.dart';
 import 'package:fixfinder/widgets/custom_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -68,19 +70,31 @@ class RegisterController extends GetxController {
     var loading = CustomToast.loadingIndicator();
     Map user = {
       'username': usernameController.text,
-      'email': usernameController.text,
+      'email': emailController.text,
       'password1': passwordController.text,
       'password2': confirmPasswordController.text,
     };
-
+    StorageService storageService = Get.find();
     final response = await RegisterProvider().postData(user);
-    if (response.statusCode == 200 || response.statusCode == 204) {
-      CustomToast.toast('Record Created');
+    if (!response.hasError) {
+      CustomToast.toast('Registered Successfully');
+      await storageService.box.write('access', response.body['access']);
+      await storageService.box.write('refresh', response.body['refresh']);
+      await storageService.box.write('id', response.body['user']['pk']);
+      await storageService.box
+          .write('username', response.body['user']['username']);
+      await storageService.box.write('email', response.body['user']['email']);
+      await storageService.box
+          .write('first_name', response.body['user']['first_name']);
+      await storageService.box
+          .write('last_name', response.body['user']['last_name']);
+      // ignore: use_build_context_synchronously
+      // Beamer.of(context).beamToReplacementNamed(Routes.homeRoute);
+      NavigationController.instance.mainBeamerKey.currentState?.routerDelegate
+          .beamToReplacementNamed(Routes.homeRoute);
       // beam to Confirmation Email Page
-      Routes.routerDelegate.beamToReplacementNamed('/auth');
     } else {
-      CustomToast.toast(
-          'Error ${response.status.code}: ${response.body['non_field_errors']}',
+      CustomToast.toast('Error ${response.status.code}: ${response.body}',
           isError: true);
     }
     loading();

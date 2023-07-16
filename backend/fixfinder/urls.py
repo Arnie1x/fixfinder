@@ -27,7 +27,7 @@ urlpatterns = [
     path('auth/register/', include('dj_rest_auth.registration.urls')),
     path('auth/verify-email/', VerifyEmailView.as_view(), name='rest_verify_email'),
     path('auth/account-confirm-email/', VerifyEmailView.as_view(), name='account_email_verification_sent'),
-    re_path(r'^account-confirm-email/(?P<key>[-:\w]+)/$', ConfirmEmailView.as_view(), name='account_confirm_email'),
+    # re_path(r'^account-confirm-email/(?P<key>[-:\w]+)/$', ConfirmEmailView.as_view(), name='account_confirm_email'),
     path('auth/password-reset/', PasswordResetView.as_view()),
     path('auth/password-reset-confirm/<uidb64>/<token>/', PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
 

@@ -1,3 +1,4 @@
+import 'package:fixfinder/controllers/navigation_controller.dart';
 import 'package:fixfinder/pages/auth/login/provider.dart';
 import 'package:fixfinder/routes/routes.dart';
 import 'package:fixfinder/services/storage_service.dart';
@@ -38,7 +39,7 @@ class LoginController extends GetxController {
     return null;
   }
 
-  void submitForm(BuildContext context) async {
+  void submitForm() async {
     final isValid = formKey.currentState!.validate();
     if (!isValid) return;
 
@@ -52,16 +53,23 @@ class LoginController extends GetxController {
     StorageService storageService = Get.find();
 
     final response = await LoginProvider().postData(user);
-    if (response.statusCode == 200) {
+    if (!response.hasError) {
       CustomToast.toast('Welcome');
-      await storageService.box.write('access', response.body['key']);
-      // await storageService.box.write('refresh', response.body['refresh']);
-      // await storageService.box
-      //     .write('username', response.body['user']['username']);
-      // await storageService.box.write('email', response.body['user']['email']);
-      Routes.routerDelegate.beamToReplacementNamed('/');
+      await storageService.box.write('access', response.body['access']);
+      await storageService.box.write('refresh', response.body['refresh']);
+      await storageService.box.write('id', response.body['user']['pk']);
+      await storageService.box
+          .write('username', response.body['user']['username']);
+      await storageService.box.write('email', response.body['user']['email']);
+      await storageService.box
+          .write('first_name', response.body['user']['first_name']);
+      await storageService.box
+          .write('last_name', response.body['user']['last_name']);
+      // Routes.routerDelegate.beamToReplacementNamed('/');
+      // ignore: use_build_context_synchronously
+      NavigationController.instance.mainBeamerKey.currentState?.routerDelegate
+          .beamToReplacementNamed(Routes.homeRoute);
     } else {
-      print('Did not work');
       CustomToast.toast('Error ${response.status.code}: ${response.body}',
           isError: true);
     }

@@ -2,6 +2,8 @@ import 'package:beamer/beamer.dart';
 import 'package:fixfinder/helpers/layout/site_layout.dart';
 import 'package:fixfinder/pages/account/technician/form.dart';
 import 'package:fixfinder/pages/account/technician/technician.dart';
+import 'package:fixfinder/pages/account/users/forms.dart';
+import 'package:fixfinder/pages/account/users/user.dart';
 import 'package:fixfinder/pages/auth/auth.dart';
 import 'package:fixfinder/pages/auth/login/login.dart';
 import 'package:fixfinder/pages/auth/register/register.dart';
@@ -20,9 +22,10 @@ class Routes {
   static const String passwordResetRoute = '/auth/user/password-reset';
   static const String passwordResetConfirmationRoute =
       '/auth/user/password-reset/confirm';
-  static const String passwordChangeRoute = '/auth/user/password-change';
 
   static const String accountRoute = '/account';
+  static const String passwordChangeRoute = '/account/change-password';
+  static const String accountUpdateRoute = '/account/update';
 
   static const String editRoute = 'edit';
   static const String newRoute = 'new';
@@ -43,17 +46,16 @@ class Routes {
   ];
 
   static BeamerDelegate routerDelegate = BeamerDelegate(
-    transitionDelegate: const NoAnimationTransitionDelegate(),
-    locationBuilder: RoutesLocationBuilder(routes: {
-      '/auth': (context, state, data) => const BeamPage(
-          key: ValueKey('auth'),
-          title: 'Authentication: FixFinder',
-          child: AuthPage()),
-      '*': (context, state, data) =>
-          const BeamPage(key: ValueKey('main'), child: SiteLayout()),
-    }),
-    // guards: guards
-  );
+      transitionDelegate: const NoAnimationTransitionDelegate(),
+      locationBuilder: RoutesLocationBuilder(routes: {
+        '/auth': (context, state, data) => const BeamPage(
+            key: ValueKey('auth'),
+            title: 'Authentication: FixFinder',
+            child: AuthPage()),
+        '*': (context, state, data) =>
+            const BeamPage(key: ValueKey('main'), child: SiteLayout()),
+      }),
+      guards: guards);
 
   static Map<Pattern, dynamic Function(BuildContext, BeamState, Object?)>
       authBeamerRoutes = {
@@ -63,10 +65,6 @@ class Routes {
         key: ValueKey('register'),
         title: 'Register: FixFinder',
         child: RegisterPage()),
-    accountRoute: (context, state, data) => const BeamPage(
-        key: ValueKey('account'),
-        title: 'Account: FixFinder',
-        child: Placeholder()),
   };
 
   static Map<Pattern, dynamic Function(BuildContext, BeamState, Object?)>
@@ -87,6 +85,21 @@ class Routes {
             child: TechnicianFormPage(
               id: int.parse(state.pathParameters['id']!),
             )),
+    accountRoute: (context, state, data) => const BeamPage(
+          key: ValueKey('account'),
+          title: 'My Account: FixFinder',
+          child: UserAccountPage(),
+        ),
+    passwordChangeRoute: (context, state, data) => const BeamPage(
+          key: ValueKey('password-change'),
+          title: 'Change Password: FixFinder',
+          child: PasswordChangePage(),
+        ),
+    accountUpdateRoute: (context, state, data) => const BeamPage(
+          key: ValueKey('account-update'),
+          title: 'Update Account: FixFinder',
+          child: AccountUpdatePage(),
+        ),
   };
   static Map<Pattern, dynamic Function(BuildContext, BeamState, Object?)>
       messagesBeamerRoutes = {

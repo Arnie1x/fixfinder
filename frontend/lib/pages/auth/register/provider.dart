@@ -1,8 +1,6 @@
 import 'package:fixfinder/api/api.dart';
 import 'package:get/get.dart';
 
-const baseUrl = 'http://gerador-nomes.herokuapp.com/nomes/10';
-
 class RegisterProvider extends GetConnect {
   final String route = 'auth/register';
 

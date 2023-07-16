@@ -46,7 +46,8 @@ class DjangoAPI extends GetConnect {
       jsonEncode(data),
       headers: {
         'Content-Type': 'application/json',
-        // 'Authorization': 'Token ${storageService.box.read('access')}'
+        if (storageService.box.read('access') != null)
+          'Authorization': 'Token ${storageService.box.read('access')}'
       },
     );
     if (response.status.hasError) {
@@ -64,7 +65,8 @@ class DjangoAPI extends GetConnect {
       jsonEncode(data),
       headers: {
         'Content-Type': 'application/json',
-        // 'Authorization': 'Token ${storageService.box.read('access')}'
+        if (storageService.box.read('access') != null)
+          'Authorization': 'Token ${storageService.box.read('access')}'
       },
     );
     if (response.status.hasError) {
@@ -82,7 +84,8 @@ class DjangoAPI extends GetConnect {
       jsonEncode(data),
       headers: {
         'Content-Type': 'application/json',
-        // 'Authorization': 'Token ${storageService.box.read('access')}'
+        if (storageService.box.read('access') != null)
+          'Authorization': 'Token ${storageService.box.read('access')}'
       },
     );
     if (response.status.hasError) {
@@ -99,7 +102,8 @@ class DjangoAPI extends GetConnect {
       '$serverBaseUrl/$route/',
       headers: {
         'Content-Type': 'application/json',
-        // 'Authorization': 'Token ${storageService.box.read('access')}'
+        if (storageService.box.read('access') != null)
+          'Authorization': 'Token ${storageService.box.read('access')}'
       },
     );
     if (response.status.hasError) {

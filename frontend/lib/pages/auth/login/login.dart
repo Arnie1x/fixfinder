@@ -64,7 +64,7 @@ class LoginPage extends GetView<LoginController> {
               ),
               FilledButton(
                 onPressed: () {
-                  controller.submitForm(context);
+                  controller.submitForm();
                 },
                 style: FilledButton.styleFrom(
                     backgroundColor: Theme.of(context).colorScheme.primary,
