@@ -27,4 +27,23 @@ class ChatProvider extends GetConnect {
       return Chat.fromJson(response.body);
     }
   }
+
+  Future<Response> getDataFromUsers(Map<dynamic, dynamic> data) async {
+    try {
+      final response = await DjangoAPI()
+          .getData('$route/find/${data['user_1']}/${data['user_2']}');
+      return response;
+    } catch (e) {
+      return Future.error(Exception(e));
+    }
+  }
+
+  Future<Response> postData(Map<dynamic, dynamic> data) async {
+    final response = await DjangoAPI().postData(route, data);
+    if (response.status.hasError) {
+      return Future.error(Exception(response.statusText));
+    } else {
+      return response;
+    }
+  }
 }

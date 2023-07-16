@@ -1,3 +1,4 @@
+import 'package:fixfinder/api/api.dart';
 import 'package:fixfinder/controllers/navigation_controller.dart';
 import 'package:fixfinder/pages/auth/login/provider.dart';
 import 'package:fixfinder/routes/routes.dart';
@@ -53,6 +54,7 @@ class LoginController extends GetxController {
     StorageService storageService = Get.find();
 
     final response = await LoginProvider().postData(user);
+    final technician = await DjangoAPI().getData('technicians/user/');
     if (!response.hasError) {
       CustomToast.toast('Welcome');
       await storageService.box.write('access', response.body['access']);
@@ -65,6 +67,9 @@ class LoginController extends GetxController {
           .write('first_name', response.body['user']['first_name']);
       await storageService.box
           .write('last_name', response.body['user']['last_name']);
+      if (technician.body != null) {
+        await storageService.box.write('technician', response.body['id']);
+      }
       // Routes.routerDelegate.beamToReplacementNamed('/');
       // ignore: use_build_context_synchronously
       NavigationController.instance.mainBeamerKey.currentState?.routerDelegate

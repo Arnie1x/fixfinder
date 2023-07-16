@@ -1,5 +1,6 @@
 import 'package:beamer/beamer.dart';
 import 'package:fixfinder/pages/technician/controller.dart';
+import 'package:fixfinder/services/storage_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -12,6 +13,7 @@ class TechnicianAccountPage extends GetView<TechnicianController> {
   Widget build(BuildContext context) {
     Get.delete<TechnicianController>();
     Get.put(TechnicianController(id: int.parse(id)));
+    StorageService storageService = Get.find();
     return ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 800),
         child: controller.obx(
@@ -74,29 +76,35 @@ class TechnicianAccountPage extends GetView<TechnicianController> {
               ),
               Row(
                 children: [
-                  FilledButton.icon(
-                    onPressed: () {},
-                    icon: const Icon(Icons.message),
-                    label: const Text('Message'),
-                    style: FilledButton.styleFrom(
-                      fixedSize: const Size.fromHeight(40),
+                  if (storageService.box.read('technician') == null)
+                    FilledButton.icon(
+                      onPressed: () {
+                        controller.openChat(
+                            user1: storageService.box.read('id') ?? -1,
+                            user2: int.parse(id));
+                      },
+                      icon: const Icon(Icons.message),
+                      label: const Text('Message'),
+                      style: FilledButton.styleFrom(
+                        fixedSize: const Size.fromHeight(40),
+                      ),
                     ),
-                  ),
                   const SizedBox(
                     width: 15,
                   ),
-                  OutlinedButton.icon(
-                    onPressed: () {
-                      Beamer.of(context).beamToNamed(
-                        '$route/edit',
-                      );
-                    },
-                    icon: const Icon(Icons.edit_note_rounded),
-                    label: const Text('Edit Profile'),
-                    style: OutlinedButton.styleFrom(
-                      fixedSize: const Size.fromHeight(40),
+                  if (storageService.box.read('technician') != null)
+                    OutlinedButton.icon(
+                      onPressed: () {
+                        Beamer.of(context).beamToNamed(
+                          '$route/edit',
+                        );
+                      },
+                      icon: const Icon(Icons.edit_note_rounded),
+                      label: const Text('Edit Profile'),
+                      style: OutlinedButton.styleFrom(
+                        fixedSize: const Size.fromHeight(40),
+                      ),
                     ),
-                  ),
                 ],
               )
             ],

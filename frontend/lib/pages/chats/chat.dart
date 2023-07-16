@@ -1,17 +1,23 @@
 import 'package:fixfinder/controllers/messages.dart';
 import 'package:fixfinder/pages/orders/order.dart';
+import 'package:fixfinder/services/storage_service.dart';
 import 'package:fixfinder/widgets/input_field.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 class ChatPage extends GetView<MessageController> {
-  const ChatPage({super.key});
+  final int id;
+  final int technicianId;
+  const ChatPage({super.key, required this.id, required this.technicianId});
 
   @override
   Widget build(BuildContext context) {
-    Get.put(MessageController(id: 1.toString()));
-    return controller.obx((data) => Scaffold(
+    Get.delete<MessageController>();
+    Get.put(MessageController(
+        id: id.toString(), technicianId: technicianId.toString()));
+    StorageService storageService = Get.find();
+    return Scaffold(
         appBar: AppBar(
           title: const Text('Title'),
           actions: [
@@ -35,9 +41,12 @@ class ChatPage extends GetView<MessageController> {
                       children: controller.messageList.reversed
                           .map(
                             (message) => ChatBubble(
-                              author: message.author! == 1 ? true : false,
+                              author: message.author! ==
+                                      storageService.box.read('id')
+                                  ? true
+                                  : false,
                               message: message.body ?? 'Null',
-                              time: message.createdAt!,
+                              time: message.createdAt ?? 'Null',
                             ),
                           )
                           .toList(),
@@ -64,7 +73,7 @@ class ChatPage extends GetView<MessageController> {
               ),
             ),
           ],
-        )));
+        ));
   }
 }
 

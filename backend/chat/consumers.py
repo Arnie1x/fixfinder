@@ -58,7 +58,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
         technician = self.pk
         # user_1 = await getUserModel(author) # type: ignore
         user_1 = await getUserModel(author) # type: ignore
-        user_2 = await getTechnicianUserModel(technician) # type: ignore
+        user_2 = await getUserModel(technician) # type: ignore
         chat = models.Chat(
             id = self.chat_name,
             user_1 = user_1,
@@ -93,6 +93,7 @@ def getUserModel(id):
 
 @sync_to_async
 def getTechnicianUserModel(id):
+    print(id)
     user = User.objects.get(technician__pk=id)
     return user
 

@@ -8,6 +8,7 @@ urlpatterns = [
     path('chats/<str:chat>/messages/<str:message>/', chat_views.MessageDetail.as_view()),
     
     path('chats/', chat_views.ChatList.as_view()),
+    path('chats/find/<str:user_1>/<str:user_2>', chat_views.ChatDetailFromUser.as_view()),
     path('chats/<str:chat>/', chat_views.ChatDetail.as_view()),
 
 	path("<str:chat_name>/", chat_views.chatPage, name="chat-page"),

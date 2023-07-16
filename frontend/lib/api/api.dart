@@ -9,9 +9,9 @@ class DjangoAPI extends GetConnect {
   StorageService storageService = Get.find();
 
   Future<void> refreshTokens() async {
-    if (!JwtDecoder.isExpired(storageService.box.read('access'))) {
-      final response = await post(
-          '$serverBaseUrl/token/refresh/', storageService.box.read('refresh'),
+    if (JwtDecoder.isExpired(storageService.box.read('access'))) {
+      final response = await post('$serverBaseUrl/auth/token/refresh/',
+          storageService.box.read('refresh'),
           headers: {
             'Content-Type': 'application/json',
           });
@@ -46,8 +46,9 @@ class DjangoAPI extends GetConnect {
       jsonEncode(data),
       headers: {
         'Content-Type': 'application/json',
-        if (storageService.box.read('access') != null)
-          'Authorization': 'Token ${storageService.box.read('access')}'
+        // if (storageService.box.read('access') != null ||
+        //     route != '$serverBaseUrl/auth')
+        //   'Authorization': 'Token ${storageService.box.read('access')}'
       },
     );
     if (response.status.hasError) {
@@ -65,8 +66,9 @@ class DjangoAPI extends GetConnect {
       jsonEncode(data),
       headers: {
         'Content-Type': 'application/json',
-        if (storageService.box.read('access') != null)
-          'Authorization': 'Token ${storageService.box.read('access')}'
+        // if (storageService.box.read('access') != null ||
+        //     route != '$serverBaseUrl/auth')
+        //   'Authorization': 'Token ${storageService.box.read('access')}'
       },
     );
     if (response.status.hasError) {
@@ -84,8 +86,9 @@ class DjangoAPI extends GetConnect {
       jsonEncode(data),
       headers: {
         'Content-Type': 'application/json',
-        if (storageService.box.read('access') != null)
-          'Authorization': 'Token ${storageService.box.read('access')}'
+        // if (storageService.box.read('access') != null ||
+        //     route != '$serverBaseUrl/auth')
+        //   'Authorization': 'Token ${storageService.box.read('access')}'
       },
     );
     if (response.status.hasError) {
@@ -102,8 +105,9 @@ class DjangoAPI extends GetConnect {
       '$serverBaseUrl/$route/',
       headers: {
         'Content-Type': 'application/json',
-        if (storageService.box.read('access') != null)
-          'Authorization': 'Token ${storageService.box.read('access')}'
+        // if (storageService.box.read('access') != null ||
+        //     route != '$serverBaseUrl/auth')
+        //   'Authorization': 'Token ${storageService.box.read('access')}'
       },
     );
     if (response.status.hasError) {

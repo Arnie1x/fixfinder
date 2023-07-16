@@ -15,6 +15,10 @@ class TechnicianDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Technician.objects.all()
     serializer_class = TechnicianSerializer
 
+@api_view()
+def get_object(request):
+        return Response(Technician.objects.filter(user=request.user))
+    
 class OrderList(generics.ListCreateAPIView):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer

@@ -107,9 +107,14 @@ class Routes {
         key: ValueKey('chat-home'),
         title: 'Chats: FixFinder',
         child: ChatHomePage()),
-    chatsRoute: (context, state, data) => const BeamPage(
-        key: ValueKey('chat-page'),
-        title: 'Chats: FixFinder',
-        child: ChatPage()),
+    '$chatsRoute/:id/:technicianId': (context, state, data) => BeamPage(
+          key: ValueKey('chat-${state.pathParameters['id']}'),
+          title: 'Chats: FixFinder',
+          child: ChatPage(
+              id: int.parse(state.pathParameters['id']!),
+              technicianId: int.parse(
+                state.pathParameters['technicianId']!,
+              )),
+        )
   };
 }

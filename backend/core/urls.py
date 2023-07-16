@@ -3,6 +3,7 @@ from . import views
 
 urlpatterns = [
     path('technicians/', views.TechnicianList.as_view()),
+    path('technicians/user/', views.get_object),
     path('technicians/<str:pk>/', views.TechnicianDetail.as_view()),
     path('technicians/<str:pk>/chat/', include('chat.urls')),
     

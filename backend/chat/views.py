@@ -1,11 +1,15 @@
 from django.shortcuts import render
+from rest_framework.decorators import api_view
 from rest_framework import generics
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.models import User
+from rest_framework.response import Response
+from django.core import serializers
 
 from core import models as core
 from .serializers import *
 from .migrations import *
+from .models import *
 
 # Create your views here.
 from django.shortcuts import render, redirect
@@ -26,6 +30,14 @@ class ChatList(generics.ListCreateAPIView):
         # print("User - %s" % User.objects.get(technician__pk=self.technician).pk)
         # return Chat.objects.filter(user_1=self.request.user.pk) | Chat.objects.filter(user_2=self.request.user.pk)
         return Chat.objects.filter(user_1=1) | Chat.objects.filter(user_2=1)
+
+class ChatDetailFromUser(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Chat.objects.all()
+    serializer_class = ChatSerializer
+    
+    def get_queryset(self):
+        self.kwargs["pk"] = 1
+        return Chat.objects.filter(user_1=User.objects.get(id=self.kwargs["user_1"]), user_2=User.objects.get(technician__id=self.kwargs["user_2"]))
 
 class ChatDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Chat.objects.all()

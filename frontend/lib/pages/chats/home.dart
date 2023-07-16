@@ -13,7 +13,7 @@ class ChatHomePage extends GetView<ChatListController> {
   Widget build(BuildContext context) {
     Get.delete<ChatListController>();
     Get.put(ChatListController());
-    return controller.obx((data) => Column(
+    return Obx(() => Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text('Chats',
@@ -26,13 +26,14 @@ class ChatHomePage extends GetView<ChatListController> {
             ),
             const Text('No Chats Yet'),
             Column(
-              children: data!
+              children: controller.chatList
                   .map((chat) => Material(
                         child: InkWell(
                           onTap: () {
                             NavigationController.instance.messagesBeamerKey
                                 .currentState?.routerDelegate
-                                .beamToNamed(Routes.chatsRoute);
+                                .beamToNamed(
+                                    '${Routes.chatsRoute}/${chat.id}/${chat.user_2}');
                           },
                           child: Card(
                             clipBehavior: Clip.antiAlias,

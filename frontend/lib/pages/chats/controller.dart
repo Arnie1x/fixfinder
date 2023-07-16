@@ -2,18 +2,18 @@ import 'package:fixfinder/models/chat.dart';
 import 'package:fixfinder/pages/chats/provider.dart';
 import 'package:get/get.dart';
 
-class ChatListController extends GetxController with StateMixin<List<Chat>> {
+class ChatListController extends GetxController {
+  late RxList<Chat> chatList = <Chat>[].obs;
   @override
   void onInit() {
-    ChatProvider().getListData().then((resp) {
-      change(resp, status: RxStatus.success());
-    }, onError: (err) {
-      change(
-        null,
-        status: RxStatus.error(err.toString()),
-      );
-      super.onInit();
-    });
+    super.onInit();
+    refreshList();
+  }
+
+  void refreshList() async {
+    Future.delayed(const Duration(milliseconds: 250));
+    chatList.value = await ChatProvider().getListData();
+    chatList.refresh();
   }
 }
 

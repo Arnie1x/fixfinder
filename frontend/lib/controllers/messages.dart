@@ -2,37 +2,32 @@ import 'dart:convert';
 
 import 'package:fixfinder/controllers/providers/messages.dart';
 import 'package:fixfinder/models/message.dart';
+import 'package:fixfinder/services/storage_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
-class MessageController extends GetxController with StateMixin<List<Message>> {
+class MessageController extends GetxController {
+  late RxList<Message> messageList = <Message>[].obs;
   final String id;
-  MessageController({required this.id});
-
+  final String technicianId;
+  MessageController({required this.id, required this.technicianId});
+  StorageService storageService = Get.find();
   late TextEditingController messageController;
 
-  RxList<Message> messageList = <Message>[].obs;
   // List<Message> get messages => messageList.value.obs;
 
-  final channel = WebSocketChannel.connect(
-      Uri.parse('ws://127.0.0.1:8000/ws/api/technicians/2/chat/1/'));
+  late WebSocketChannel channel;
 
   @override
   void onInit() async {
     super.onInit();
+    channel = WebSocketChannel.connect(Uri.parse(
+        'ws://127.0.0.1:8000/ws/api/technicians/$technicianId/chat/$id/'));
     messageController = TextEditingController();
-    MessageProvider().getListData(int.parse(id)).then((resp) {
-      change(resp, status: RxStatus.success());
-    }, onError: (err) {
-      change(
-        null,
-        status: RxStatus.error(err.toString()),
-      );
-    });
-    // messageList.bindStream(messageStream());
-    // dynamicMessageList.bindStream(messageStream());
-    getMessages();
+    messageList.value = await MessageProvider().getListData(int.parse(id));
+    messageList.refresh();
+    // getMessages();
 
     channel.stream.listen((event) {
       getMessages();
@@ -49,6 +44,7 @@ class MessageController extends GetxController with StateMixin<List<Message>> {
     Future.delayed(const Duration(milliseconds: 1000));
     messageList.value = await MessageProvider().getListData(int.parse(id));
     messageList.refresh();
+    print(messageList);
   }
 
   // Stream<List<Message>> messageStream() {
@@ -66,7 +62,10 @@ class MessageController extends GetxController with StateMixin<List<Message>> {
   void sendMessage() async {
     await channel.ready;
     if (messageController.text.isNotEmpty) {
-      final map = {"message": messageController.text, "author": 1};
+      final map = {
+        "message": messageController.text,
+        "author": storageService.box.read('id') ?? 1
+      };
       messageList.add(Message(author: 1, body: messageController.text));
       channel.sink.add(jsonEncode(map));
       messageController.text = '';
