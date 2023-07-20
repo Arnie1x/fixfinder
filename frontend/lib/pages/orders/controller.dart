@@ -1,6 +1,7 @@
 import 'package:fixfinder/api/api.dart';
 import 'package:fixfinder/models/order.dart';
 import 'package:fixfinder/pages/orders/provider.dart';
+import 'package:fixfinder/services/storage_service.dart';
 import 'package:fixfinder/widgets/custom_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -13,6 +14,9 @@ class OrderListController extends GetxController with StateMixin<List<Order>> {
   late String orderState = 'pending';
   late bool editForm = false;
   late TextEditingController amountController;
+  StorageService storageService = Get.find();
+
+  OrderListController({required this.technician});
 
   @override
   void onInit() {
@@ -26,6 +30,7 @@ class OrderListController extends GetxController with StateMixin<List<Order>> {
       );
       super.onInit();
     });
+    user = storageService.box.read('id');
   }
 
   @override
@@ -81,6 +86,7 @@ class OrderListController extends GetxController with StateMixin<List<Order>> {
         ? await DjangoAPI()
             .putData('${OrderProvider().route}/$id', model.toJson())
         : await DjangoAPI().postData(OrderProvider().route, model.toJson());
+    print(response.body);
     if (!response.status.hasError) {
       CustomToast.toast(
           editForm ? 'Record Modified Successfully' : 'Record Created');

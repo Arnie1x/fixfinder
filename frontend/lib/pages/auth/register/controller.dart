@@ -88,8 +88,10 @@ class RegisterController extends GetxController {
           .write('first_name', response.body['user']['first_name']);
       await storageService.box
           .write('last_name', response.body['user']['last_name']);
+
       // ignore: use_build_context_synchronously
       // Beamer.of(context).beamToReplacementNamed(Routes.homeRoute);
+      Routes.routerDelegate.beamToReplacementNamed('/');
       NavigationController.instance.mainBeamerKey.currentState?.routerDelegate
           .beamToReplacementNamed(Routes.homeRoute);
       // beam to Confirmation Email Page

@@ -19,8 +19,8 @@ class Technician(models.Model):
         ordering = ['-created_at']
         
 class Order(models.Model):
-    technician = models.ForeignKey(Technician, on_delete=models.PROTECT)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    technician = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT, related_name='technician_order')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT)
     amount = models.IntegerField()
     class State(models.TextChoices):
         PENDING = 'pending', 'Pending'

@@ -1,6 +1,7 @@
 import 'package:fixfinder/api/api.dart';
 import 'package:fixfinder/models/technician.dart';
 import 'package:fixfinder/pages/technician/provider.dart';
+import 'package:fixfinder/services/storage_service.dart';
 import 'package:fixfinder/widgets/custom_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -20,7 +21,7 @@ class TechnicianFormController extends GetxController
       locationController,
       aboutController,
       servicesOfferedController;
-
+  final StorageService service = Get.find();
   @override
   void onInit() async {
     super.onInit();
@@ -39,6 +40,7 @@ class TechnicianFormController extends GetxController
       });
       edit(await TechnicianProvider().getData(id));
     }
+    user = service.box.read("id");
   }
 
   void edit(Technician technician) async {

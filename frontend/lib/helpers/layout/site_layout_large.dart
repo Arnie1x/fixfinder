@@ -40,7 +40,7 @@ class SiteLayoutLarge extends StatelessWidget {
                       Expanded(child: Container()),
                       SearchBar(
                         elevation: const MaterialStatePropertyAll(2),
-                        hintText: 'Search for a Technician',
+                        hintText: '',
                         hintStyle: MaterialStatePropertyAll(
                             Theme.of(context).textTheme.bodyLarge),
                         trailing: [

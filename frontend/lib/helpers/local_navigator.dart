@@ -28,7 +28,7 @@ Beamer messagesBeamerNavigator() => Beamer(
 Beamer authBeamerNavigator() => Beamer(
       key: NavigationController.instance.authBeamerKey,
       routerDelegate: BeamerDelegate(
-          // transitionDelegate: const NoAnimationTransitionDelegate(),
+          transitionDelegate: const NoAnimationTransitionDelegate(),
           locationBuilder:
               RoutesLocationBuilder(routes: Routes.authBeamerRoutes)),
     );

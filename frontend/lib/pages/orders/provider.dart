@@ -19,6 +19,20 @@ class OrderProvider extends GetConnect {
     }
   }
 
+  Future<List<Order>> getDataFromUsers(Map<dynamic, dynamic> data) async {
+    final response = await DjangoAPI()
+        .getData('$route/${data['user']}/${data['technician']}');
+    if (response.status.hasError) {
+      return Future.error(Exception(response.statusText));
+    } else {
+      orders = <Order>[];
+      response.body.forEach((v) {
+        orders.add(Order.fromJson(v));
+      });
+      return orders;
+    }
+  }
+
   Future<Order> getData(int id) async {
     final response = await DjangoAPI().getData('$route/$id');
     if (response.status.hasError) {

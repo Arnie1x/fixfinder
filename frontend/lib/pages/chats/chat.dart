@@ -1,4 +1,6 @@
+import 'package:beamer/beamer.dart';
 import 'package:fixfinder/controllers/messages.dart';
+import 'package:fixfinder/controllers/navigation_controller.dart';
 import 'package:fixfinder/pages/orders/order.dart';
 import 'package:fixfinder/services/storage_service.dart';
 import 'package:fixfinder/widgets/input_field.dart';
@@ -17,14 +19,28 @@ class ChatPage extends GetView<MessageController> {
     Get.put(MessageController(
         id: id.toString(), technicianId: technicianId.toString()));
     StorageService storageService = Get.find();
+    var name = context.currentBeamLocation.data;
+    if (name != null) {
+      name = name as Map<String, String>;
+    }
+    print(name);
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Title'),
+          leading: IconButton(
+              onPressed: () {
+                NavigationController
+                    .instance.messagesBeamerKey.currentState?.routerDelegate
+                    .beamBack();
+              },
+              icon: const Icon(Icons.arrow_back)),
           actions: [
             IconButton(
                 onPressed: () {
                   showModalBottomSheet(
-                      context: context, builder: (_) => const OrderWidget());
+                      context: context,
+                      builder: (_) => OrderWidget(
+                            technicianId: technicianId,
+                          ));
                 },
                 icon: const Icon(Icons.more_vert_outlined))
           ],

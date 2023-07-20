@@ -15,7 +15,7 @@ class HomePage extends GetView<TechnicianListController> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Trending Technicians',
+            'Technicians',
             style: Theme.of(context)
                 .textTheme
                 .headlineMedium
@@ -54,7 +54,6 @@ class HomePage extends GetView<TechnicianListController> {
                                             .colorScheme
                                             .onPrimaryContainer),
                               ),
-                              const Text('Rating'),
                               const SizedBox(
                                 height: 15,
                               ),

@@ -5,12 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class OrderWidget extends GetView<OrderListController> {
-  const OrderWidget({super.key});
+  final int technicianId;
+  const OrderWidget({super.key, required this.technicianId});
 
   @override
   Widget build(BuildContext context) {
     Get.delete<OrderListController>();
-    Get.put(OrderListController());
+    Get.put(OrderListController(technician: technicianId));
     return controller.obx((data) => Padding(
           padding: const EdgeInsets.all(8.0),
           child: SingleChildScrollView(

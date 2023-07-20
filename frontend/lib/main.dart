@@ -2,6 +2,7 @@ import 'package:beamer/beamer.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:fixfinder/constants/color_schemes.g.dart';
 import 'package:fixfinder/controllers/navigation_controller.dart';
+import 'package:fixfinder/controllers/users.dart';
 import 'package:fixfinder/routes/routes.dart';
 import 'package:fixfinder/services/auth_service.dart';
 import 'package:fixfinder/services/storage_service.dart';
@@ -15,6 +16,7 @@ Future<void> main() async {
   await initServices();
   runApp(const MyApp());
   Get.put(NavigationController());
+  Get.put(UserController());
 }
 
 initServices() async {

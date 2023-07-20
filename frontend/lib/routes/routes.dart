@@ -78,6 +78,10 @@ class Routes {
           route: state.uri.path,
           id: state.pathParameters['id'] ?? '-1',
         )),
+    '$technicianAccountRoute/$newRoute': (context, state, data) => BeamPage(
+        key: const ValueKey('technician'),
+        title: 'New Technician: FixFinder',
+        child: TechnicianFormPage()),
     '$technicianAccountRoute/:id/$editRoute': (context, state, data) =>
         BeamPage(
             key: ValueKey('technician-edit-${state.pathParameters['id']}'),

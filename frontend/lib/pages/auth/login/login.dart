@@ -28,6 +28,16 @@ class LoginPage extends GetView<LoginController> {
             children: [
               // Logo
               Text(
+                'fixfinder',
+                style: Theme.of(context)
+                    .textTheme
+                    .displaySmall
+                    ?.copyWith(color: Theme.of(context).colorScheme.primary),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Text(
                 'Login',
                 style: Theme.of(context).textTheme.headlineMedium,
               ),

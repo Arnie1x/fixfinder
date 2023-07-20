@@ -76,19 +76,19 @@ class TechnicianAccountPage extends GetView<TechnicianController> {
               ),
               Row(
                 children: [
-                  if (storageService.box.read('technician') == null)
-                    FilledButton.icon(
-                      onPressed: () {
-                        controller.openChat(
-                            user1: storageService.box.read('id') ?? -1,
-                            user2: int.parse(id));
-                      },
-                      icon: const Icon(Icons.message),
-                      label: const Text('Message'),
-                      style: FilledButton.styleFrom(
-                        fixedSize: const Size.fromHeight(40),
-                      ),
+                  // if (storageService.box.read('technician') == null)
+                  FilledButton.icon(
+                    onPressed: () {
+                      controller.openChat(
+                          user1: storageService.box.read('id') ?? -1,
+                          user2: int.parse(id));
+                    },
+                    icon: const Icon(Icons.message),
+                    label: const Text('Message'),
+                    style: FilledButton.styleFrom(
+                      fixedSize: const Size.fromHeight(40),
                     ),
+                  ),
                   const SizedBox(
                     width: 15,
                   ),

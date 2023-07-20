@@ -28,6 +28,16 @@ class RegisterPage extends GetView<RegisterController> {
             children: [
               // Logo
               Text(
+                'fixfinder',
+                style: Theme.of(context)
+                    .textTheme
+                    .displaySmall
+                    ?.copyWith(color: Theme.of(context).colorScheme.primary),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Text(
                 'Register',
                 style: Theme.of(context).textTheme.headlineMedium,
               ),

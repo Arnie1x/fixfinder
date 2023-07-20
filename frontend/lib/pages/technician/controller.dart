@@ -49,7 +49,7 @@ class TechnicianController extends GetxController with StateMixin<Technician> {
       // }
       final map = {
         'user_1': user1,
-        'user_2': user2,
+        'user_2': 1,
       };
       // TODO: Add a check for existing chats so that we don't get HTTP 400 Errors
       await ChatProvider().postData(map);
